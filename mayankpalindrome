@@ -1,0 +1,30 @@
+//dev c 
+//HAL9000 problem
+
+#include<stdio.h>
+#include<conio.h>
+int main()
+{ int input,output,count=0,input2,input3;
+printf("enter the no.");
+scanf("%d",&input);//input the user no.
+input3=input;//storing initial valus to be printed at last
+for(int j=0;;j++)//outer loop for addition
+{input2=input;output=0;
+for(int i=0;input!=0;i++)//loop for reversing
+{ output=output*10 + input%10;
+input=input/10;}
+if(output==input2 && count==0)// checking palindrome condition
+{
+printf("no. is already a palindrome");
+break;}
+else if(output==input2)//checking after addition palindrome condition
+{ printf("%d becomes palindrome after %d steps and new no. is %d ",input3,count,output);
+break;
+}
+else//modification for next addition loop
+{ input=input2+output;
+count++;
+}
+}
+getch();
+}
