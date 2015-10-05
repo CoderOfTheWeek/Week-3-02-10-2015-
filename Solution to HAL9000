@@ -1,0 +1,89 @@
+/*
+Name:Anand Akshay
+Section:C
+Stream:BTech CSE(1st Year)
+OS Name:Microsoft Windows 10 Home Single Language
+Processor:Intel(R) Core(TM) i7-5500U CPU @ 2.40GHz, 2401 Mhz, 2 Core(s), 4 Logical Processor(s)
+Made in Microsoft Visual Studio 2013
+*/
+
+/*
+ABOUT THE CODE:
+The code below, creates a reverse number of the given input and adds up the original number with the reversed one and checks if the sum is palindrome or not.
+It uses a recursive function to convert the number to a Palindrome one, if the sum doesn't yield a Palindrome Number.
+We use a counter to track the number of reverse+summation steps it takes to convert the input to a Palindrome Number.
+*/
+
+//START
+#include<iostream>
+
+using namespace std;
+
+/*Function Definition*/
+int reverse(int);
+int check(int, int);
+
+/*Counter to count the no. of steps*/
+int counter=0;
+
+void main()
+{
+	int orig_num;
+
+	/*Accepting Number from user*/
+	cout << "Enter the number :";
+	cin >> orig_num;
+
+	int rev_num = reverse(orig_num);
+    int number=check(orig_num, rev_num);
+
+    cout << "The palindrome number is " << number << " and the no. of steps to make it a palindrome is " << counter << " step(s)."<<'\n';
+    
+	system("pause");
+
+}
+
+/*Function to reverse the number*/
+int reverse(int num)
+{
+	int rev = 0;
+	int rem;
+	
+	while (num != 0)
+	{
+		rem = num % 10;
+		rev = rev * 10 + rem;
+		num = num / 10;
+	}
+
+	return rev;
+}
+
+/*Recursive function to check if the acquired sum is palindrome*/
+int check(int orig, int rev)
+{
+	int num= orig + rev;
+	int temp = num;
+	int check_int = 0;
+	int rem;
+
+	while (num != 0)
+	{
+		rem = num % 10;
+		check_int = check_int * 10 + rem;
+		num = num / 10;
+	}
+
+	counter++;
+
+	if (temp != check_int)
+	{
+
+		int rev_num=reverse(temp);
+		check(temp, rev_num);
+
+	}
+	else return temp;
+	
+}
+//END
